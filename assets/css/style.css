@@ -1,0 +1,37 @@
+body{
+   background-color: black;
+   color: white;
+}
+
+
+label{
+    color: blue;
+    margin: 2%;
+}
+
+#gif-search {
+    margin-left: 2%;
+    margin-top: 5px;
+    width: 15%;
+}
+#add-gif {
+    margin-left: 2%;
+    margin-top: 5px;
+}
+
+#buttons {
+    margin-left: 20%;
+    margin-top: -3%;
+}
+
+.bn{
+    margin-left: 1%;
+}
+
+
+.gif{
+    position: relative;
+    float: left;
+    margin: 3%;
+    color: gold;
+}
