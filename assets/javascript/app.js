@@ -1,10 +1,11 @@
 +$(document).ready(function(){
     
-    
+    //holds the name of the giphys that are going to be display 
     var superheros = ["Supergirl", "The Flash", "Wonder Women", "Batman", "Justice League", "Superman", 
                       "Thor", "The Avengers", "Captain America", "The Hulk", "Iron Man"
     ]
     
+    // display giphy to the DOM
     function display(){
         var gif = $(this).attr("data-name");
         console.log(gif);
@@ -21,7 +22,6 @@
             var imgUrl;
             var still ;
             var animated;
-           
     
             for(var i =0; i<response.data.length; i++){ 
                 var gifDiv = $('<div class="gif">'); 
@@ -32,12 +32,21 @@
                 p1 = $("<p>").text("Rating: " + rating);
     
                 gifDiv.append(p1);
+
+                if(window.matchMedia("(max-width: 400px)").matches){
+                    imgUrl = response.data[i].images.fixed_width_still.url;
+                    still = response.data[i].images.fixed_width_still.url;
+                    animated = response.data[i].images.fixed_width.url
+                    console.log("small");
+                }
+                else{
+                    imgUrl = response.data[i].images.fixed_height_still.url;
+                    still = response.data[i].images.fixed_height_still.url;
+                    animated = response.data[i].images.fixed_height.url;
+                }
     
-                imgUrl = response.data[i].images.fixed_height_still.url;
-                still = response.data[i].images.fixed_height_still.url;
-                animated = response.data[i].images.fixed_height.url;
-                console.log(still);
-                console.log(animated);
+              
+                
     
                 images = $("<img>").attr("src", imgUrl);
                 images.attr("data-still", still);
@@ -49,13 +58,10 @@
     
                 $(".gif-view").prepend(gifDiv);
             }
-        })
-    
-        
-    
+        })  
     }
     
-    
+    //displays the buttons to the DOM
     function buttonsDisplay(){
         $("#buttons").empty();
     
@@ -73,6 +79,7 @@
         }
     }
     
+    // adds a new giphy when we do click to the add button
     $("#add-gif").on("click", function(event){
         event.preventDefault();
     
@@ -81,30 +88,28 @@
         buttonsDisplay();
     });
     
-    
-    
-    
-    
+//calls the display function when we do click
     $(document).on("click", ".bn", display);
     buttonsDisplay();
     
+    //pauses and animates the the giphy
     $(document).on("click", ".images", function() {
-            
+        //gets the images state 
         var state = $(this).attr("data-state");
-        
+
+        //checks if the ghipy is still and  if it is it animates the giphy
         if (state === "still") {
-        var x= $(this).attr("src", $(this).attr("data-animated"));
-        var y =$(this).attr("data-state", "animated");
-        console.log(x);
-        console.log(y);
-        console.log("animate");
-        } else {
-        var z=  $(this).attr("src", $(this).attr("data-still"));
-        var j= $(this).attr("data-state", "still");
-        console.log(z);
-        console.log(j);
-       console.log("pause");
+            $(this).attr("src", $(this).attr("data-animated"));
+            $(this).attr("data-state", "animated");
+        } 
+        
+        //if the ghipy is animated it will pause it
+        else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
         }
-    });
+    });// end of the 
     
-    }); 
+}); // end of the on ready document
+
+//https://ksalazar91.github.io/Responsive-Portfolio/portfolio.html

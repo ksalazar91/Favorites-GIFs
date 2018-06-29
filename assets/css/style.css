@@ -35,3 +35,15 @@ label{
     margin: 3%;
     color: gold;
 }
+
+@media screen and (max-width: 320px) {
+    #buttons {
+        margin: 4%;
+    }
+    .bn{
+        margin: 2%;
+    }
+    .gif{
+        margin: 3% 3% 3% 12%;
+    }
+  }
