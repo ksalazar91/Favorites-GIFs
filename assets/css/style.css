@@ -1,8 +1,15 @@
 body{
-   background-color: black;
    color: white;
+   
 }
 
+html { 
+    background: url(../images/green.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
 
 label{
     color: blue;

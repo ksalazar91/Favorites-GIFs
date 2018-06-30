@@ -1,16 +1,37 @@
-+$(document).ready(function(){
+
+$(document).ready(function(){
     
     //holds the name of the giphys that are going to be display 
     var superheros = ["Supergirl", "The Flash", "Wonder Women", "Batman", "Justice League", "Superman", 
                       "Thor", "The Avengers", "Captain America", "The Hulk", "Iron Man"
     ]
     
+    var temp=[];
+    var count = [];
+    var offset=0;
+
+    function newGif(gif){
+        if(temp.indexOf(gif) === -1){
+            temp.push(gif);
+            count.push(0);
+        }
+        else{
+            var x = temp.indexOf(gif);
+            count[x] += 10;
+            offset = count[x];
+        }
+
+    }
+    
+   
     // display giphy to the DOM
     function display(){
+        //$(".gif-view").empty();
         var gif = $(this).attr("data-name");
-        console.log(gif);
-    
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=pR7dC7LdhQcWZMNoB72jRudELla7MUZ7&limit=10";
+        offset = 0;
+        newGif(gif);
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gif + "&api_key=pR7dC7LdhQcWZMNoB72jRudELla7MUZ7&offset=" + offset + "&limit=10";
     
         $.ajax({
             url: queryURL,
@@ -76,6 +97,7 @@
             b.text(superheros[i]);
             
             $("#buttons").append(b);
+           
         }
     }
     
@@ -84,13 +106,21 @@
         event.preventDefault();
     
         var gifs = $("#Add").val().trim();
-        superheros.push(gifs);
-        buttonsDisplay();
+
+        if(superheros.indexOf(gifs) === -1){
+            superheros.push(gifs);
+            buttonsDisplay();
+        }
+        else{
+            alert("That superhero is alrady done. Try another.")
+        }
+        
     });
     
 //calls the display function when we do click
     $(document).on("click", ".bn", display);
     buttonsDisplay();
+ 
     
     //pauses and animates the the giphy
     $(document).on("click", ".images", function() {
@@ -110,6 +140,7 @@
         }
     });// end of the 
     
+
 }); // end of the on ready document
 
 //https://ksalazar91.github.io/Responsive-Portfolio/portfolio.html
