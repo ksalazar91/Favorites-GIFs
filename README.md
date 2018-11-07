@@ -2,6 +2,11 @@
 
 https://ksalazar91.github.io/Favorites-GIFs/
 
+# Demo Video
+
+https://drive.google.com/file/d/1cFjShgBKVm5zogGs3azgwhMBXPWSSPHB/view
+
+# Overview
 It contains my favorite topics gifs
 
 This app uses the GIPHY API to make a dynamic web page
@@ -17,3 +22,5 @@ click the image should animate and if the image is click agin the the image
 should stop. Under every gif you can find the rating. Additionally, the app let
 
 the user input the name of a topic and add an additonal button to the page.
+
+![Initial](https://github.com/ksalazar91/Favorites-GIFs/blob/master/1.png)
